@@ -1,15 +1,17 @@
 package entities;
 
+import java.util.Random;
+
 public class Customer {
 
-    private long id;
-    private String name;
-    private int tier;
+    Random randomNumber = new Random();
 
-    public Customer(long id, String name, int tier) {
-        this.id = id;
+    private long id = randomNumber.nextLong(1000, 2000);
+    private String name;
+    private int tier = randomNumber.nextInt(1, 5);
+
+    public Customer(String name) {
         this.name = name;
-        this.tier = tier;
     }
 
     public long getId() {

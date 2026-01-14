@@ -2,21 +2,22 @@ package entities;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
 
 public class Order {
+    Random random = new Random();
 
-    private long id;
+    private long id = random.nextLong();
     private String status;
     private LocalDate orderDate;
     private LocalDate deliveryDate;
     private List<Product> products;
     private Customer customer;
 
-    public Order(long id, String status, LocalDate orderDate, LocalDate deliveryDate, List<Product> products, Customer customer) {
-        this.id = id;
+    public Order(String status, LocalDate orderDate, List<Product> products, Customer customer) {
         this.status = status;
         this.orderDate = orderDate;
-        this.deliveryDate = deliveryDate;
+        this.deliveryDate = orderDate.plusDays(15);
         this.products = products;
         this.customer = customer;
     }
