@@ -42,7 +42,7 @@ public class Main {
         ArrayList<Product> carrello1 = new ArrayList<Product>();
         carrello1.add(products.get(0));
         carrello1.add(products.get(7));
-        carrello1.add(products.get(9));
+        carrello1.add(products.get(5));
 
         orders.add(new Order("Pagato", LocalDate.of(2025, 9, 25), carrello1, customers.get(3)));
 
@@ -76,8 +76,7 @@ public class Main {
         System.out.println("---------------------------------------------- PRIMO ESERCIZIO ----------------------------------------------");
 
         List<Product> listaDeiLibri = products.stream()
-                .filter(product -> product.getCategory().equals("Books"))
-                .filter(product -> product.getPrice() > 100)
+                .filter(product -> product.getCategory().equals("Books") && product.getPrice() > 100)
                 .toList();
 
         System.out.println(listaDeiLibri);
@@ -85,8 +84,10 @@ public class Main {
         System.out.println("---------------------------------------------- SECONDO ESERCIZIO ----------------------------------------------");
 
         List<Order> listaOrdiniBaby = orders.stream()
-                .filter(Order -> Order.getProducts().equals("Baby"))
+                .filter(order -> order.getProducts().stream()
+                        .anyMatch(product -> product.getCategory().equals("Baby")))
                 .toList();
+
 
         System.out.println(listaOrdiniBaby);
 
